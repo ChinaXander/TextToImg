@@ -1,0 +1,21 @@
+{
+    "name": "xander/text-image",
+    "description": "Text to Images",
+    "type": "1",
+    "require": {
+        "php": "^7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Xander\\Text\\": "text/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xds",
+            "email": "1905320249@qq.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
