@@ -5,7 +5,7 @@ use Xander\Text\TextToImg;
 
 //$text = '擦拭法阿 法狗奥撒个 恩噶 as 噶阿锋age啊 aggage gqaegeag 阿法狗啊 aqegaeg dgageegea gaegaegaeaeya 阿发个哥恩爱狗';
 //$text = 'a778cfad你好';
-            $text = 'STM32F429BIT6SD1GS1G531G31G5E1GA31G5AG
+$text = 'STM32F429BIT6SD1GS1G531G31G5E1GA31G5AG
 TPS548B28RWWR
 TPS2546RTER。
 ADC128D818CIMTX/noPB
