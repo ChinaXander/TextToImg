@@ -3,7 +3,9 @@
     "description": "Text to Images",
     "type": "1",
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "ext-gd": "*",
+        "ext-mbstring": "*"
     },
     "license": "MIT",
     "autoload": {

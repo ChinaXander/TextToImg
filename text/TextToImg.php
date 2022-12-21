@@ -2,6 +2,8 @@
 
 namespace Xander\Text;
 
+use Exception;
+
 /**
  * User: xds
  * Date: 20221125
@@ -94,7 +96,7 @@ class TextToImg
      * <br/>Date: 20221124
      * <br/>explain: 把文字插入图片中
      * @return $this
-     * @throws \Exception
+     * @throws Exception
      */
     public function toImages(): self
     {
