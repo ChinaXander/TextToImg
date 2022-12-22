@@ -38,8 +38,8 @@ class Images extends Base
     public function __construct( $image )
     {
         list( $this->width, $this->height, $dtype ) = getimagesize( $image );
-        if ( !isset( $this->image_type[$dtype] ) ) throw new TextException( 'invalid image type' );
-        $this->type = $this->image_type[$dtype];
+        if ( !$this->type = $this->image_type[$dtype] ?? "" ) throw new TextException( 'invalid image type' );
+
         $this->image = ( 'imagecreatefrom' . strtolower( $this->type ) )( $image );
     }
 
