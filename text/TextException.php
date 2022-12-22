@@ -7,7 +7,7 @@ use Exception;
 /**
  * User: xds
  * Date: 20221125
- * explain:
+ * explain:ex
  */
 class TextException extends Exception
 {
