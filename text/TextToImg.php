@@ -9,13 +9,12 @@ use Exception;
  * Date: 20221125
  * explain:
  */
-class TextToImg
+class TextToImg extends Base
 {
     const LINKE = 'br';
-    private array $text = [];
-    private $image;
-    private array $text_arr = [];
-    private array $option = [
+    protected array $text = [];
+    protected array $text_arr = [];
+    protected array $option = [
         'font' => __DIR__ . '/../blackfont.ttf',
         'font_size' => 16,
         'font_space' => 0,
@@ -75,18 +74,16 @@ class TextToImg
     /**
      * User: xds
      * <br/>Date: 20221124
-     * <br/>explain: 对文本进行手动换行操作，该操作会清空之前对文本的操作
+     * <br/>explain: 对文本进行手动换行操作，识别到$br后换行
      * @param string $br 默认 \r\n
      * @return $this
      */
     public function customBr( string $br = "\r\n" ): self
     {
-        $text = current( $this->text );
-        if ( stripos( $text, $br ) !== false ) {
-            $this->text = $this->text_arr = [];
-            foreach ( array_filter( explode( $br, $text ) ) as $item ) {
-                $this->appendText( $item );
-            }
+        $text = implode( $br, $this->text );
+        $this->text = $this->text_arr = [];
+        foreach ( array_filter( explode( $br, $text ) ) as $item ) {
+            $this->appendText( $item );
         }
         return $this;
     }
@@ -102,7 +99,7 @@ class TextToImg
     {
         if ( !is_file( $this->option['font'] ) ) throw new TextException( '请设置字体' );
         $black = imagecolorallocate( $this->image, 0, 0, 0 );
-        $base_height = $this->getFontHeight( current( $this->text ) );
+        $base_height = $this->getFontHeight( current( $this->text_arr ) );
         $start_width = $this->option['start_width'];
         $start_height = $base_height + $this->option['line_space'];
         foreach ( $this->text_arr as $item ) {
@@ -126,31 +123,6 @@ class TextToImg
             }
         }
         return $this;
-    }
-
-    /**
-     * User: xds
-     * <br/>Date: 20221124
-     * <br/>explain: 输出到浏览器
-     * @return void
-     */
-    public function show()
-    {
-        header( 'Content-Type: image/png' );
-        imagepng( $this->image );
-    }
-
-    /**
-     * User: xds
-     * <br/>Date: 20221124
-     * <br/>explain: 保存到指定路径
-     * @param $file_path
-     * @return mixed
-     */
-    public function save( $file_path )
-    {
-        imagepng( $this->image, $file_path );
-        return $file_path;
     }
 
     /**
@@ -189,11 +161,9 @@ class TextToImg
      */
     private function textToArr( $text = null ): array
     {
-        $text = $text ?: $this->text;
-
-        $this->text_arr[] = $a = mb_substr( $text, 0, 1 );
-        str_replace( $a, '', $text );
-        if ( $text = substr_replace( $text, '', 0, strlen( $a ) ) ) {
+        $text = is_null( $text ) ? $this->text : $text;
+        $this->text_arr[] = mb_substr( $text, 0, 1 );
+        if ( strlen( $text = substr_replace( $text, '', 0, 1 ) ) > 0 ) {
             return $this->textToArr( $text );
         }
         return $this->text_arr;
