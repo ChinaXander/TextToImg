@@ -7,7 +7,7 @@ use Exception;
 /**
  * User: xds
  * Date: 20221125
- * explain:
+ * explain:true
  */
 class TextToImg extends Base
 {
