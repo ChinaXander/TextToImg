@@ -5,7 +5,7 @@ namespace Xander\Text;
 /**
  * User: xds
  * Date: 20221125
- * explain:
+ * explain:true
  */
 class TextToImg
 {
